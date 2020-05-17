@@ -4,7 +4,7 @@
 
 	<groupId>org.hackdays</groupId>
 	<artifactId>devdockervaadin</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.001</version>
 
 	<name>devdocker</name>
 	<description>Proyecto de demo para desarrollo Java con Docker.</description>
