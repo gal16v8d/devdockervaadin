@@ -1,10 +1,13 @@
 package co.com.gsdd.vaadin;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import java.time.Duration;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,35 +16,33 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 public class DevdockerApplicationIT {
 
+	private static final String SERVER_URL = "http://127.0.0.1:8097/";
 	private static HtmlUnitDriver driver;
 
-	@Before
+	@BeforeEach
 	public void init() throws Exception {
 		driver = new HtmlUnitDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
-	@After
+	@AfterEach
 	public void close() throws Exception {
 		driver.close();
 	}
 
 	@Test
 	public void enteringReservationPage_newReservationButtonIsEnabled() throws Exception {
-		driver.get("http://127.0.0.1:8080/");
-		Wait<WebDriver> waitFluent = new FluentWait<WebDriver>(driver).withTimeout(20, TimeUnit.SECONDS).pollingEvery(1,
-				TimeUnit.SECONDS);
+		driver.get(SERVER_URL);
+		Wait<WebDriver> waitFluent = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(20))
+				.pollingEvery(Duration.ofSeconds(1));
 		List<WebElement> refList = driver.findElements(By.tagName("a"));
 		for (WebElement we : refList) {
 			if ("Continue without updating".equals(we.getText())) {
 				WebElement anchorToClick = waitFluent.until(ExpectedConditions.elementToBeClickable(we));
-				Assert.assertTrue("Anchor to click for not supported browser page not present.",
-						(waitFluent.until(ExpectedConditions.elementToBeClickable(we)) != null));
+				Assertions.assertTrue((waitFluent.until(ExpectedConditions.elementToBeClickable(we)) != null),
+						"Anchor to click for not supported browser page not present.");
 				anchorToClick.click();
 			}
 		}

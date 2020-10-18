@@ -24,26 +24,26 @@ public class ReservationEditor extends VerticalLayout {
 
 	private static final long serialVersionUID = 6251462789734087062L;
 
-	private final ReservationRepository ReservationRepository;
+	private final ReservationRepository reservationRepository;
 
 	private Reservation reservation;
 
-	TextField reservationOwner = new TextField("Reservation Owner");
-	TextField restaurantName = new TextField("Restaurant");
-	DateField reservationLocalDate = new DateField("Reservation Date");
-	TextField dinersNumber = new TextField("Diners Number");
-	CheckBox confirmed = new CheckBox("Reservation Confirmed", false);
+	private TextField reservationOwner = new TextField("Reservation Owner");
+	private TextField restaurantName = new TextField("Restaurant");
+	private DateField reservationLocalDate = new DateField("Reservation Date");
+	private TextField dinersNumber = new TextField("Diners Number");
+	private CheckBox confirmed = new CheckBox("Reservation Confirmed", false);
 
-	Button save = new Button("Save", VaadinIcons.DISC);
-	Button cancel = new Button("Cancel");
-	Button delete = new Button("Delete", VaadinIcons.TRASH);
-	CssLayout actions = new CssLayout(save, cancel, delete);
+	private Button save = new Button("Save", VaadinIcons.DISC);
+	private Button cancel = new Button("Cancel");
+	private Button delete = new Button("Delete", VaadinIcons.TRASH);
+	private CssLayout actions = new CssLayout(save, cancel, delete);
 
-	Binder<Reservation> binder = new Binder<>(Reservation.class);
+	private Binder<Reservation> binder = new Binder<>(Reservation.class);
 
 	@Autowired
 	public ReservationEditor(ReservationRepository repository) {
-		this.ReservationRepository = repository;
+		this.reservationRepository = repository;
 
 		addComponents(reservationOwner, restaurantName, reservationLocalDate, dinersNumber, confirmed, actions);
 
@@ -63,7 +63,6 @@ public class ReservationEditor extends VerticalLayout {
 	}
 
 	public interface ChangeHandler {
-
 		void onChange();
 	}
 
@@ -74,14 +73,12 @@ public class ReservationEditor extends VerticalLayout {
 		}
 		final boolean persisted = c.getId() != null;
 		if (persisted) {
-			reservation = ReservationRepository.findOne(c.getId());
+			reservation = reservationRepository.findById(c.getId()).orElse(null);
 		} else {
 			reservation = c;
 		}
 		cancel.setVisible(persisted);
-
 		binder.setBean(reservation);
-
 		setVisible(true);
 
 		save.focus();

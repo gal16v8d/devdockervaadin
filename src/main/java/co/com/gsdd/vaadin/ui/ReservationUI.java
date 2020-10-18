@@ -29,57 +29,57 @@ public class ReservationUI extends UI {
 
 	private static final long serialVersionUID = -158427528697976789L;
 
-	private final ReservationRepository ReservationRepo;
+	private final ReservationRepository reservationRepository;
 
-	private final ReservationEditor ReservationEditor;
+	private final ReservationEditor reservationEditor;
 
-	final Grid<Reservation> ReservationGrid;
+	private final Grid<Reservation> reservationGrid;
 
-	final TextField ReservationFilter;
+	private final TextField reservationFilter;
 
 	private final Button addNewReservationBtn;
 
 	@Autowired
 	public ReservationUI(ReservationRepository repo, ReservationEditor editor) {
-		this.ReservationRepo = repo;
-		this.ReservationEditor = editor;
-		this.ReservationGrid = new Grid<>(Reservation.class);
-		this.ReservationFilter = new TextField();
+		this.reservationRepository = repo;
+		this.reservationEditor = editor;
+		this.reservationGrid = new Grid<>(Reservation.class);
+		this.reservationFilter = new TextField();
 		this.addNewReservationBtn = new Button("New Reservation", VaadinIcons.PLUS);
 		this.addNewReservationBtn.setId("newReservationButton");
 	}
 
 	@Override
 	protected void init(VaadinRequest request) {
-		HorizontalLayout filterBtnLayout = new HorizontalLayout(ReservationFilter, addNewReservationBtn);
-		VerticalLayout leftLayout = new VerticalLayout(filterBtnLayout, ReservationGrid);
-		VerticalLayout rightLayout = new VerticalLayout(ReservationEditor);
+		HorizontalLayout filterBtnLayout = new HorizontalLayout(reservationFilter, addNewReservationBtn);
+		VerticalLayout leftLayout = new VerticalLayout(filterBtnLayout, reservationGrid);
+		VerticalLayout rightLayout = new VerticalLayout(reservationEditor);
 		HorizontalLayout mainLayout = new HorizontalLayout(leftLayout, rightLayout);
 		setContent(mainLayout);
 
-		ReservationGrid.setHeight(400, Unit.PIXELS);
-		ReservationGrid.setWidth(900, Unit.PIXELS);
-		ReservationGrid.setColumns("id", "reservationOwner", "restaurantName", "dinersNumber", "confirmed");
-		Column<Reservation, Date> reservationDateColumn = ReservationGrid.addColumn(Reservation::getReservationDate,
+		reservationGrid.setHeight(400, Unit.PIXELS);
+		reservationGrid.setWidth(900, Unit.PIXELS);
+		reservationGrid.setColumns("id", "reservationOwner", "restaurantName", "dinersNumber", "confirmed");
+		Column<Reservation, Date> reservationDateColumn = reservationGrid.addColumn(Reservation::getReservationDate,
 				new DateRenderer("%1$tb %1$td, %1$tY", Locale.getDefault()));
 		reservationDateColumn.setCaption("Reservation Date");
 
-		ReservationFilter.setWidth(350, Unit.PIXELS);
-		ReservationFilter.setPlaceholder("Filter by Reservation Owner");
+		reservationFilter.setWidth(350, Unit.PIXELS);
+		reservationFilter.setPlaceholder("Filter by Reservation Owner");
 
-		ReservationFilter.setValueChangeMode(ValueChangeMode.LAZY);
-		ReservationFilter.addValueChangeListener(e -> listReservations(e.getValue()));
+		reservationFilter.setValueChangeMode(ValueChangeMode.LAZY);
+		reservationFilter.addValueChangeListener(e -> listReservations(e.getValue()));
 
-		ReservationGrid.asSingleSelect().addValueChangeListener(e -> {
-			ReservationEditor.editReservation(e.getValue());
+		reservationGrid.asSingleSelect().addValueChangeListener(e -> {
+			reservationEditor.editReservation(e.getValue());
 		});
 
-		addNewReservationBtn.addClickListener(e -> ReservationEditor.editReservation(new Reservation("", "",
+		addNewReservationBtn.addClickListener(e -> reservationEditor.editReservation(new Reservation("", "",
 				new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), "", false)));
 
-		ReservationEditor.setChangeHandler(() -> {
-			ReservationEditor.setVisible(false);
-			listReservations(ReservationFilter.getValue());
+		reservationEditor.setChangeHandler(() -> {
+			reservationEditor.setVisible(false);
+			listReservations(reservationFilter.getValue());
 		});
 
 		listReservations(null);
@@ -87,9 +87,9 @@ public class ReservationUI extends UI {
 
 	void listReservations(String filterText) {
 		if (StringUtils.isEmpty(filterText)) {
-			ReservationGrid.setItems((Collection<Reservation>) ReservationRepo.findAll());
+			reservationGrid.setItems((Collection<Reservation>) reservationRepository.findAll());
 		} else {
-			ReservationGrid.setItems(ReservationRepo.findByReservationOwnerContainsIgnoreCase(filterText));
+			reservationGrid.setItems(reservationRepository.findByReservationOwnerContainsIgnoreCase(filterText));
 		}
 	}
 

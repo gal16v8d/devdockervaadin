@@ -16,6 +16,4 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
 	Collection<Reservation> findByReservationOwnerContainsIgnoreCase(String filterText);
 
-	Reservation findOne(Long id);
-
 }
