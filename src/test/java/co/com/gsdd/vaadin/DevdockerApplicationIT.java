@@ -16,24 +16,24 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
-public class DevdockerApplicationIT {
+class DevdockerApplicationIT {
 
 	private static final String SERVER_URL = "http://127.0.0.1:8097/";
 	private static HtmlUnitDriver driver;
 
 	@BeforeEach
-	public void init() throws Exception {
+	void init() throws Exception {
 		driver = new HtmlUnitDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 
 	@AfterEach
-	public void close() throws Exception {
+	void close() throws Exception {
 		driver.close();
 	}
 
 	@Test
-	public void enteringReservationPage_newReservationButtonIsEnabled() throws Exception {
+	void enteringReservationPage_newReservationButtonIsEnabled() throws Exception {
 		driver.get(SERVER_URL);
 		Wait<WebDriver> waitFluent = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(20))
 				.pollingEvery(Duration.ofSeconds(1));
