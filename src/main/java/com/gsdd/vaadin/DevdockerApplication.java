@@ -1,4 +1,4 @@
-package co.com.gsdd.vaadin;
+package com.gsdd.vaadin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DevdockerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DevdockerApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(DevdockerApplication.class, args);
+  }
 }
