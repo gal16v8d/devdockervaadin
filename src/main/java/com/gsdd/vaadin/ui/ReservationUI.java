@@ -87,10 +87,10 @@ public class ReservationUI extends UI {
 
   void listReservations(String filterText) {
     if (StringUtils.hasText(filterText)) {
-      reservationGrid.setItems((Collection<Reservation>) reservationRepository.findAll());
-    } else {
       reservationGrid
-          .setItems(reservationRepository.findByReservationOwnerContainsIgnoreCase(filterText));
+      .setItems(reservationRepository.findByReservationOwnerContainsIgnoreCase(filterText));
+    } else {
+      reservationGrid.setItems((Collection<Reservation>) reservationRepository.findAll());
     }
   }
 
