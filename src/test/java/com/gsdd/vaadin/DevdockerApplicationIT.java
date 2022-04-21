@@ -17,34 +17,37 @@ import org.openqa.selenium.support.ui.Wait;
 
 class DevdockerApplicationIT {
 
-  private static final String SERVER_URL = "http://127.0.0.1:8097/";
-  private static HtmlUnitDriver driver;
+    private static final String SERVER_URL = "http://127.0.0.1:8097/";
+    private static HtmlUnitDriver driver;
 
-  @BeforeEach
-  void init() throws Exception {
-    driver = new HtmlUnitDriver();
-    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-  }
-
-  @AfterEach
-  void close() throws Exception {
-    driver.close();
-  }
-
-  @Test
-  void enteringReservationPage_newReservationButtonIsEnabled() throws Exception {
-    driver.get(SERVER_URL);
-    Wait<WebDriver> waitFluent = new FluentWait<WebDriver>(driver)
-        .withTimeout(Duration.ofSeconds(20)).pollingEvery(Duration.ofSeconds(1));
-    List<WebElement> refList = driver.findElements(By.tagName("a"));
-    for (WebElement we : refList) {
-      if ("Continue without updating".equals(we.getText())) {
-        WebElement anchorToClick = waitFluent.until(ExpectedConditions.elementToBeClickable(we));
-        Assertions.assertTrue(
-            (waitFluent.until(ExpectedConditions.elementToBeClickable(we)) != null),
-            "Anchor to click for not supported browser page not present.");
-        anchorToClick.click();
-      }
+    @BeforeEach
+    void init() throws Exception {
+        driver = new HtmlUnitDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
-  }
+
+    @AfterEach
+    void close() throws Exception {
+        driver.close();
+    }
+
+    @Test
+    void enteringReservationPage_newReservationButtonIsEnabled() throws Exception {
+        driver.get(SERVER_URL);
+        Wait<WebDriver> waitFluent =
+                new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(20))
+                        .pollingEvery(Duration.ofSeconds(1));
+        List<WebElement> refList = driver.findElements(By.tagName("a"));
+        for (WebElement we : refList) {
+            if ("Continue without updating".equals(we.getText())) {
+                WebElement anchorToClick =
+                        waitFluent.until(ExpectedConditions.elementToBeClickable(we));
+                Assertions.assertTrue(
+                        (waitFluent.until(ExpectedConditions.elementToBeClickable(we)) != null),
+                        "Anchor to click for not supported browser page not present.");
+                anchorToClick.click();
+            }
+        }
+    }
 }

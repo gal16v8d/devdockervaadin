@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions
+	xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+	<!-- still vulnerable latest: 1.12.11 -->
+	<suppress>
+		<notes><![CDATA[
+   file name: spring-hateoas-1.4.1.jar
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/org\.springframework\.hateoas/spring\-hateoas@.*$
+		</packageUrl>
+		<cpe>cpe:/a:vmware:spring_framework</cpe>
+	</suppress>
+	<!-- still vulnerable latest: 2.0.0.RELEASE -->
+	<suppress>
+		<notes><![CDATA[
+   file name: spring-plugin-core-2.0.0.RELEASE.jar
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/org\.springframework\.plugin/spring\-plugin\-core@.*$
+		</packageUrl>
+		<cpe>cpe:/a:vmware:spring_framework</cpe>
+	</suppress>
+	<!-- TODO check and fixme -->
+	<suppress>
+		<notes><![CDATA[
+   file name: htmlunit-cssparser-1.10.0.jar
+   ]]></notes>
+		<packageUrl regex="true">^pkg:maven/net\.sourceforge\.htmlunit/htmlunit\-cssparser@.*$
+		</packageUrl>
+		<cpe>cpe:/a:htmlunit_project:htmlunit</cpe>
+	</suppress>
+</suppressions>

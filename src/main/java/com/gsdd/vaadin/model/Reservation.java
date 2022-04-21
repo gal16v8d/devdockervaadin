@@ -17,36 +17,43 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Reservation {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id", nullable = false)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-  @Column(name = "reservation_owner")
-  private String reservationOwner;
+    @Column(name = "reservation_owner")
+    private String reservationOwner;
 
-  @Column(name = "restaurant_name")
-  private String restaurantName;
+    @Column(name = "restaurant_name")
+    private String restaurantName;
 
-  @Column(name = "reservation_date")
-  private Date reservationDate;
+    @Column(name = "reservation_date")
+    private Date reservationDate;
 
-  @Column(name = "diners_number")
-  private String dinersNumber;
+    @Column(name = "diners_number")
+    private String dinersNumber;
 
-  @Column(name = "confirmed")
-  private Boolean confirmed;
+    @Column(name = "confirmed")
+    private Boolean confirmed;
 
-  public Reservation(String reservationOwner, String restaurantName, LocalDate reservationLocalDate,
-      String dinersNumber, Boolean confirmed) {
-    this.reservationOwner = reservationOwner;
-    this.restaurantName = restaurantName;
-    if (reservationLocalDate != null) {
-      this.reservationDate =
-          Date.from(reservationLocalDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    public Reservation(
+            String reservationOwner,
+            String restaurantName,
+            LocalDate reservationLocalDate,
+            String dinersNumber,
+            Boolean confirmed) {
+        this.reservationOwner = reservationOwner;
+        this.restaurantName = restaurantName;
+        if (reservationLocalDate != null) {
+            this.reservationDate =
+                    Date.from(
+                            reservationLocalDate
+                                    .atStartOfDay()
+                                    .atZone(ZoneId.systemDefault())
+                                    .toInstant());
+        }
+        this.dinersNumber = dinersNumber;
+        this.confirmed = confirmed;
     }
-    this.dinersNumber = dinersNumber;
-    this.confirmed = confirmed;
-  }
-
 }
