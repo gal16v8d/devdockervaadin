@@ -10,7 +10,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource(collectionResourceRel = "reservations", path = "reservations")
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    List<Reservation> findByReservationOwner(@Param("reservationOwner") String reservationOwner);
+  List<Reservation> findByReservationOwner(@Param("reservationOwner") String reservationOwner);
 
-    Collection<Reservation> findByReservationOwnerContainsIgnoreCase(String filterText);
+  Collection<Reservation> findByReservationOwnerContainsIgnoreCase(String filterText);
 }
