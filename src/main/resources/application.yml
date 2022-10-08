@@ -3,8 +3,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/vaadin
-    username: ${BDVAADIN_USER}
-    password: ${BDVAADIN_PASS}
+    username: ${DB_VAADIN_USER}
+    password: ${DB_VAADIN_PASS}
   jpa:
     hibernate:
       ddl-auto: none
