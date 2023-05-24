@@ -1,3 +1,8 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 server:
   port: 8097
 spring:
@@ -5,7 +10,14 @@ spring:
     url: jdbc:postgresql://localhost:5432/vaadin
     username: ${DB_VAADIN_USER}
     password: ${DB_VAADIN_PASS}
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connection-test-query: SELECT 1
+      idle-timeout: 20000
+      pool-name: VaadinCP
+      maximum-pool-size: 50
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
     properties:

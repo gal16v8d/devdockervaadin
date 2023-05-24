@@ -6,7 +6,7 @@
     <dependencySet>
       <useProjectArtifact>true</useProjectArtifact>
       <includes>
-        <include>co.com.gsdd.vaadin:devdocker</include>
+        <include>com.gsdd.vaadin:devdocker</include>
       </includes>
       <outputDirectory>.</outputDirectory>
       <outputFileNameMapping>devdocker.jar</outputFileNameMapping>
