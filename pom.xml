@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.2</version>
+		<version>2.7.10</version>
 		<relativePath />
 	</parent>
 
@@ -24,19 +24,19 @@
 		<project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
 		<java.version>17</java.version>
 
-		<mvn.jacoco.plugin.version>0.8.8</mvn.jacoco.plugin.version>
-		<mvn.failsafe.plugin.version>3.0.0-M8</mvn.failsafe.plugin.version>
-		<mvn.surefire.plugin.version>3.0.0-M8</mvn.surefire.plugin.version>
-		<mvn.spotless.plugin.version>2.33.0</mvn.spotless.plugin.version>
-		<mvn.checkstyle.plugin.version>3.2.1</mvn.checkstyle.plugin.version>
-		<mvn.dependency-check.plugin.version>8.0.2</mvn.dependency-check.plugin.version>
+		<mvn.jacoco.plugin.version>0.8.11</mvn.jacoco.plugin.version>
+		<mvn.failsafe.plugin.version>3.2.2</mvn.failsafe.plugin.version>
+		<mvn.surefire.plugin.version>3.2.2</mvn.surefire.plugin.version>
+		<mvn.spotless.plugin.version>2.40.0</mvn.spotless.plugin.version>
+		<mvn.checkstyle.plugin.version>3.3.1</mvn.checkstyle.plugin.version>
+		<mvn.dependency-check.plugin.version>8.4.3</mvn.dependency-check.plugin.version>
 
 		<!-- If true skips UT test execution -->
 		<skip.unit.tests>false</skip.unit.tests>
 		<!-- If true skips IT test execution -->
 		<skip.integration.tests>false</skip.integration.tests>
 
-		<checkstyle.version>10.1</checkstyle.version>
+		<checkstyle.version>10.12.5</checkstyle.version>
 
 		<vaadin.version>8.20.2</vaadin.version>
 		<project.build.finalName>devdockerfinal</project.build.finalName>
