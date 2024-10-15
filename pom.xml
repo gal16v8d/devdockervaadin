@@ -12,7 +12,7 @@
 
 	<groupId>com.gsdd</groupId>
 	<artifactId>devdockervaadin</artifactId>
-	<version>2.0.1</version>
+	<version>2.0.2</version>
 
 	<name>devdocker</name>
 	<description>Proyecto de demo para desarrollo Java con Docker.</description>
@@ -24,19 +24,19 @@
 		<project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
 		<java.version>17</java.version>
 
-		<mvn.jacoco.plugin.version>0.8.11</mvn.jacoco.plugin.version>
-		<mvn.failsafe.plugin.version>3.2.2</mvn.failsafe.plugin.version>
-		<mvn.surefire.plugin.version>3.2.2</mvn.surefire.plugin.version>
-		<mvn.spotless.plugin.version>2.40.0</mvn.spotless.plugin.version>
-		<mvn.checkstyle.plugin.version>3.3.1</mvn.checkstyle.plugin.version>
-		<mvn.dependency-check.plugin.version>8.4.3</mvn.dependency-check.plugin.version>
+		<mvn.jacoco.plugin.version>0.8.12</mvn.jacoco.plugin.version>
+		<mvn.failsafe.plugin.version>3.5.0</mvn.failsafe.plugin.version>
+		<mvn.surefire.plugin.version>3.5.0</mvn.surefire.plugin.version>
+		<mvn.spotless.plugin.version>2.43.0</mvn.spotless.plugin.version>
+		<mvn.checkstyle.plugin.version>3.5.0</mvn.checkstyle.plugin.version>
+		<mvn.dependency-check.plugin.version>10.0.4</mvn.dependency-check.plugin.version>
 
 		<!-- If true skips UT test execution -->
 		<skip.unit.tests>false</skip.unit.tests>
 		<!-- If true skips IT test execution -->
 		<skip.integration.tests>false</skip.integration.tests>
 
-		<checkstyle.version>10.12.5</checkstyle.version>
+		<checkstyle.version>10.18.1</checkstyle.version>
 
 		<vaadin.version>8.20.2</vaadin.version>
 		<project.build.finalName>devdockerfinal</project.build.finalName>
@@ -251,7 +251,7 @@
 					<!-- define a language-specific format -->
 					<java>
 						<googleJavaFormat>
-							<version>1.15.0</version>
+							<version>1.17.0</version>
 							<reflowLongStrings>true</reflowLongStrings>
 						</googleJavaFormat>
 						<trimTrailingWhitespace />
@@ -273,7 +273,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<configuration>
-					<encoding>UTF-8</encoding>
 					<consoleOutput>true</consoleOutput>
 					<failsOnError>true</failsOnError>
 					<linkXRef>false</linkXRef>
